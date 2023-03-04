@@ -3,6 +3,7 @@ package com.example.cat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.cat.databinding.ActivityCatBinding
 import com.squareup.picasso.Picasso
@@ -66,6 +67,7 @@ class CatActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 Log.e("MainActivity", "error: $e")
             }
+            Toast.makeText(this@CatActivity, "Last cat :)", Toast.LENGTH_LONG).show()
         }
     }
 }
