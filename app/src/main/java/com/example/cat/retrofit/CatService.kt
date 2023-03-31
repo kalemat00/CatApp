@@ -6,6 +6,6 @@ import retrofit2.http.Query
 
 
 interface CatService {
-    @GET("search")
-    suspend fun listRepos(@Query("limit") arrayLength: Int): Array<Cat>
+    @GET(Url.PATH)
+    suspend fun listRepos(@Query(Url.QUERY) arrayLength: Int): Array<Cat>
 }

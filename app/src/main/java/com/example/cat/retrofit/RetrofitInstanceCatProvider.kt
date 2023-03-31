@@ -8,12 +8,11 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object RetrofitInstance {
-    const val APIKEY = "live_4pNlR3a0TubEa76Peqfzcar0DzDv1OcKGFiWhsUTq384V5IFiLuGPBTaKbzZZL15"
-    const val HEADER = "x-api-key"
+
+class RetrofitInstanceCatProvider {
     class AuthorizationInterceptor : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
-            val newRequest = chain.request().newBuilder().addHeader(HEADER, APIKEY).build()
+            val newRequest = chain.request().newBuilder().addHeader(Url.HEADER, Url.APIKEY).build()
             Log.i("Authorization Interceptor", "newRequest: $newRequest")
             return chain.proceed(newRequest)
         }
@@ -27,7 +26,7 @@ object RetrofitInstance {
     private val retrofit: Retrofit = Retrofit
         .Builder()
         .client(client)
-        .baseUrl("https://api.thecatapi.com/v1/images/")
+        .baseUrl(Url.BASEURL)
         .addConverterFactory(
             GsonConverterFactory.create()
         ).build()
@@ -35,5 +34,5 @@ object RetrofitInstance {
         logging.level = HttpLoggingInterceptor.Level.HEADERS
     }
     private val catService: CatService = retrofit.create(CatService::class.java)
-    fun getRetrofitInstance() = catService
+    fun provide(): CatService = catService
 }

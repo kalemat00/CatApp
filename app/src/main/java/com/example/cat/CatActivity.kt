@@ -1,5 +1,6 @@
 package com.example.cat
 
+import android.app.Application
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -19,10 +20,11 @@ class CatActivity : AppCompatActivity() {
         binding = ActivityCatBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this).get(CatViewModel::class.java)
+        viewModel = (application as CatApplication).catViewModel.create(CatViewModel::class.java)
         viewModel.retrieveRepos(lastCatSnackBar())
         observeRepos()
     }
+
     private fun observeRepos() {
 
         viewModel.cat.observe(this) {
