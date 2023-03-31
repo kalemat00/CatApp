@@ -1,5 +1,6 @@
-package com.example.cat
+package com.example.cat.retrofit
 
+import com.example.cat.Cat
 import retrofit2.http.GET
 import retrofit2.http.Query
 
