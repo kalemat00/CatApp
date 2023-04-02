@@ -6,6 +6,6 @@ import com.example.cat.retrofit.RetrofitInstanceCatProvider
 class CatApplication: Application() {
 
     private val retrofitInstance: RetrofitInstanceCatProvider = RetrofitInstanceCatProvider()
-    val catViewModel = ViewModelFactory(retrofitInstance.provide())
+    val catViewModel = ViewModelFactory(retrofitInstance)
 
 }

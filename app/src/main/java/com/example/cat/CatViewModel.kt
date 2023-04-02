@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cat.retrofit.CatService
+import com.example.cat.retrofit.RetrofitInstanceCatProvider
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class CatViewModel(private val catService: CatService): ViewModel() {
+class CatViewModel(private val catProvider: RetrofitInstanceCatProvider): ViewModel() {
     //cat instance to send to the ui
     private val _cat: MutableLiveData<Cat> = MutableLiveData()
     val cat: LiveData<Cat> get() = _cat
@@ -23,7 +23,7 @@ class CatViewModel(private val catService: CatService): ViewModel() {
     fun retrieveRepos(getSnackBarWhenFinished:()  -> Unit) {
         viewModelScope.launch {
             try {
-                _repos = catService.listRepos(3)
+                _repos = catProvider.provide(3)
                 getCatFromArray(getSnackBarWhenFinished)
             } catch (e: Exception){
                 _error.value = e.localizedMessage
