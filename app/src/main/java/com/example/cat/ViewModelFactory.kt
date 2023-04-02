@@ -2,8 +2,8 @@ package com.example.cat
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.cat.retrofit.CatService
 import com.example.cat.retrofit.RetrofitInstanceCatProvider
+import com.example.cat.usecase.CatViewModel
 
 class ViewModelFactory(private val catProvider: RetrofitInstanceCatProvider):  ViewModelProvider.Factory{
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

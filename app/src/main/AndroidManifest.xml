@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Cat"
         tools:targetApi="31">
         <activity
-            android:name=".CatActivity"
+            android:name=".ui.CatActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

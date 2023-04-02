@@ -1,6 +1,7 @@
 package com.example.cat.retrofit
 
-import com.example.cat.Cat
+import com.example.cat.retrofit.dto.toCat
+import com.example.cat.usecase.model.Cat
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -22,5 +23,5 @@ class RetrofitInstanceCatProvider {
             GsonConverterFactory.create()
         ).build()
     private val catService: CatService = retrofit.create(CatService::class.java)
-    suspend fun provide(numberOfCats: Int): Array<Cat> = catService.listRepos(numberOfCats)
+    suspend fun provide(numberOfCats: Int): List<Cat> = catService.listRepos(numberOfCats).map { it.toCat() }
 }
